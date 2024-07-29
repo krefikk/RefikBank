@@ -1,0 +1,6 @@
+@RefikBank_HostAddress = http://localhost:5084
+
+GET {{RefikBank_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
