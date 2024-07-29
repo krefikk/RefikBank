@@ -38,3 +38,4 @@ C:\Users\ahmet\Desktop\RefikBankProje\RefikBank\RefikBank\obj\Debug\net8.0\refin
 C:\Users\ahmet\Desktop\RefikBankProje\RefikBank\RefikBank\obj\Debug\net8.0\RefikBank.pdb
 C:\Users\ahmet\Desktop\RefikBankProje\RefikBank\RefikBank\obj\Debug\net8.0\RefikBank.genruntimeconfig.cache
 C:\Users\ahmet\Desktop\RefikBankProje\RefikBank\RefikBank\obj\Debug\net8.0\ref\RefikBank.dll
+C:\Users\ahmet\Desktop\RefikBankProje\RefikBank\RefikBank\obj\Debug\net8.0\RefikBank.sourcelink.json

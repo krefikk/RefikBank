@@ -167,8 +167,36 @@ namespace RefikBank.Controllers
         }
 
         [Authorize]
+        [HttpGet("deposit")]
+        public IActionResult Deposit(string accountNumber, float amount)
+        {
+            var userID = User.Claims.First(c => c.Type == "userID").Value;
+            var user = MemoryDatabase.Users.FirstOrDefault(u => u.userID == userID);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var account = user.GetAccounts().FirstOrDefault(a => a.accountNumber == accountNumber);
+            if (account == null)
+            {
+                return NotFound();
+            }
+
+            account.IncreaseBalance(amount);
+            string log = account.accountType switch
+            {
+                0 => $"Balance increased by {amount} Turkish Liras. New Balance: {account.GetBalance()} Turkish Liras",
+                1 => $"Balance increased by {amount} Dollars. New Balance: {account.GetBalance()} Dollars",
+                2 => $"Balance increased by {amount} Euros. New Balance: {account.GetBalance()} Euros",
+                _ => $"Balance increased by {amount} (unknown currency type). New Balance: {account.GetBalance()}",
+            };
+            return Ok(new { message = log });
+        }
+
+        [Authorize]
         [HttpPost("transfer")]
-        public IActionResult Transfer(string sourceAccountNumber, string targetAccountNumber)
+        public IActionResult Transfer(string sourceAccountNumber, string targetAccountNumber, float amount)
         {
             Operations.Operations operations = new Operations.Operations();
             TransferRequest request = new TransferRequest
@@ -176,7 +204,8 @@ namespace RefikBank.Controllers
                 SourceAccountNumber = sourceAccountNumber,
                 SourceAccountType = operations.GetAccountTypeFromAccountNumber(sourceAccountNumber),
                 TargetAccountNumber = targetAccountNumber,
-                TargetAccountType = operations.GetAccountTypeFromAccountNumber(targetAccountNumber)
+                TargetAccountType = operations.GetAccountTypeFromAccountNumber(targetAccountNumber),
+                Amount = amount
             };
 
             var userID = User.Claims.First(c => c.Type == "userID").Value;
