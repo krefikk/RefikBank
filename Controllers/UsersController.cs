@@ -248,7 +248,14 @@ namespace RefikBank.Controllers
             sourceAccount.DecreaseBalance(request.Amount);
             targetAccount.IncreaseBalance(convertedAmount);
 
-            return Ok();
+            string log = targetAccount.accountType switch
+            {
+                0 => $"Your {amount} Turkish Liras transfer completed successfully. New Balance: {targetAccount.GetBalance()} Turkish Liras",
+                1 => $"Your {amount} Dollars transfer completed successfully. New Balance: {targetAccount.GetBalance()} Dollars",
+                2 => $"Your {amount} Euros transfer completed successfully. New Balance: {targetAccount.GetBalance()} Euros",
+                _ => $"Your {amount} (unknown currency type) transfer completed successfully. New Balance: {targetAccount.GetBalance()}",
+            };
+            return Ok(new { message = log }); 
         }
 
         private string GenerateJwtToken(User user)

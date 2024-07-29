@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RefikBank")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f47b2b9e7745552c5f992ed09749b664f2bae602")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef3cfceed7a9d11b23ac31069ad218febf5070a2")]
 [assembly: System.Reflection.AssemblyProductAttribute("RefikBank")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RefikBank")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
